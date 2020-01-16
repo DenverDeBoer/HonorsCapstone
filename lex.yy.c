@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 4
-#define YY_END_OF_BUFFER 5
+#define YY_NUM_RULES 7
+#define YY_END_OF_BUFFER 8
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,9 +360,9 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[8] =
+static const flex_int16_t yy_accept[11] =
     {   0,
-        0,    0,    5,    2,    3,    1,    0
+        0,    0,    8,    5,    6,    4,    3,    1,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -371,16 +371,16 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    3,    3,    1,    3,    1,    3,    4,    4,    4,
+        4,    4,    4,    4,    4,    4,    4,    1,    1,    1,
+        1,    1,    1,    1,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        1,    1,    1,    1,    1,    1,    6,    6,    6,    6,
 
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
+        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
+        6,    6,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -397,29 +397,31 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[4] =
+static const YY_CHAR yy_meta[7] =
     {   0,
-        1,    1,    1
+        1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[8] =
+static const flex_int16_t yy_base[11] =
     {   0,
-        0,    0,    4,    5,    5,    5,    5
+        0,    0,    7,    8,    8,    8,    8,    8,    8,    8
     } ;
 
-static const flex_int16_t yy_def[8] =
+static const flex_int16_t yy_def[11] =
     {   0,
-        7,    1,    7,    7,    7,    7,    0
+       10,    1,   10,   10,   10,   10,   10,   10,   10,    0
     } ;
 
-static const flex_int16_t yy_nxt[9] =
+static const flex_int16_t yy_nxt[15] =
     {   0,
-        4,    5,    6,    7,    3,    7,    7,    7
+        4,    5,    6,    7,    8,    9,   10,    3,   10,   10,
+       10,   10,   10,   10
     } ;
 
-static const flex_int16_t yy_chk[9] =
+static const flex_int16_t yy_chk[15] =
     {   0,
-        1,    1,    1,    3,    7,    7,    7,    7
+        1,    1,    1,    1,    1,    1,    3,   10,   10,   10,
+       10,   10,   10,   10
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -437,17 +439,20 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "test.l"
-/*** Definition Section has one variable 
-which can be accessed inside yylex()  
-and main() ***/
-#line 6 "test.l"
-int count = 0; 
-#line 446 "lex.yy.c"
-/*** Rule Section has three rules, first rule  
-matches with capital letters, second rule 
-matches with any character except newline and  
-third rule does not take input after the enter***/
-#line 451 "lex.yy.c"
+/**
+Definition
+Contains variables that can be accessed in
+yylex() and main()
+**/
+#line 8 "test.l"
+#line 449 "lex.yy.c"
+/**
+Rule Section
+These rules govern the validity of statements written
+for the language
+As a test...reads characters and returns if they are valid or not
+**/
+#line 456 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -664,9 +669,9 @@ YY_DECL
 		}
 
 	{
-#line 13 "test.l"
+#line 16 "test.l"
 
-#line 670 "lex.yy.c"
+#line 675 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -693,13 +698,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 8 )
+				if ( yy_current_state >= 11 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 5 );
+		while ( yy_base[yy_current_state] != 8 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -725,27 +730,41 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "test.l"
-{printf("%s capital letter\n", yytext); 
-       count++;} 
+#line 17 "test.l"
+{printf("%s is a capital letter and valid\n", yytext);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 16 "test.l"
-{printf("%s not a capital letter\n", yytext);} 
+#line 18 "test.l"
+{printf("%s is a lowercase letter and valid\n", yytext);}
 	YY_BREAK
 case 3:
-/* rule 3 can match eol */
 YY_RULE_SETUP
-#line 17 "test.l"
-{return 0;} 
+#line 19 "test.l"
+{printf("%s is a digit and valid\n", yytext);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "test.l"
+#line 20 "test.l"
+{printf("%s is an arithmetic and is valid\n", yytext);}
+	YY_BREAK
+case 5:
+YY_RULE_SETUP
+#line 21 "test.l"
+{printf("%s is an invalid character\n", yytext);}
+	YY_BREAK
+case 6:
+/* rule 6 can match eol */
+YY_RULE_SETUP
+#line 22 "test.l"
+{return 0;}
+	YY_BREAK
+case 7:
+YY_RULE_SETUP
+#line 23 "test.l"
 ECHO;
 	YY_BREAK
-#line 749 "lex.yy.c"
+#line 768 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1042,7 +1061,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 8 )
+			if ( yy_current_state >= 11 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1070,11 +1089,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 8 )
+		if ( yy_current_state >= 11 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 7);
+	yy_is_jam = (yy_current_state == 10);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1750,36 +1769,16 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 18 "test.l"
+#line 23 "test.l"
 
   
-/*** Code Section prints the number of 
-capital letter present in the given input***/
-int yywrap(){} 
-int main(){ 
-  
-// Explanation: 
-// yywrap() - wraps the above rule section 
-/* yyin - takes the file pointer  
-          which contains the input*/
-/* yylex() - this is the main flex function 
-          which runs the Rule Section*/
-// yytext is the text in the buffer 
-  
-// Uncomment the lines below  
-// to take input from file 
-// FILE *fp; 
-// char filename[50]; 
-// printf("Enter the filename: \n"); 
-// scanf("%s",filename); 
-// fp = fopen(filename,"r"); 
-// yyin = fp; 
-  
-yylex(); 
-printf("\nNumber of Captial letters " 
-      "in the given input - %d\n", count); 
-  
-return 0; 
-} 
-
+/**
+Code Section
+Provides additional functionalities
+**/
+int yywrap(){} 	//Wraps the rule section
+int main(){
+yylex();	//Main FLEX function that runs the rules section  
+return 0;
+}
 
