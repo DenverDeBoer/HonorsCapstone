@@ -438,13 +438,13 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "test.l"
+#line 1 "spl.l"
 /**
 Definition
 Contains variables that can be accessed in
 yylex() and main()
 **/
-#line 8 "test.l"
+#line 8 "spl.l"
 #line 449 "lex.yy.c"
 /**
 Rule Section
@@ -669,7 +669,7 @@ YY_DECL
 		}
 
 	{
-#line 16 "test.l"
+#line 16 "spl.l"
 
 #line 675 "lex.yy.c"
 
@@ -730,38 +730,38 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 17 "test.l"
+#line 17 "spl.l"
 {printf("%s is a capital letter and valid\n", yytext);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 18 "test.l"
+#line 18 "spl.l"
 {printf("%s is a lowercase letter and valid\n", yytext);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 19 "test.l"
+#line 19 "spl.l"
 {printf("%s is a digit and valid\n", yytext);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 20 "test.l"
+#line 20 "spl.l"
 {printf("%s is an arithmetic and is valid\n", yytext);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 21 "test.l"
+#line 21 "spl.l"
 {printf("%s is an invalid character\n", yytext);}
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 22 "test.l"
+#line 22 "spl.l"
 {return 0;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 23 "test.l"
+#line 23 "spl.l"
 ECHO;
 	YY_BREAK
 #line 768 "lex.yy.c"
@@ -1769,7 +1769,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 23 "test.l"
+#line 23 "spl.l"
 
   
 /**
