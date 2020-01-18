@@ -18,10 +18,11 @@ As a test...reads characters and returns if they are valid or not
 [a-z] {printf("%s is a lowercase letter and valid\n", yytext);}
 [0-9] {printf("%s is a digit and valid\n", yytext);}
 [-\+\*/] {printf("%s is an arithmetic and is valid\n", yytext);}
+[\t\n[:space:]] {printf("%s is whitespace and valid\n", yytext);}
 . {printf("%s is an invalid character\n", yytext);}
-\n {return 0;}
+(END) {return 0;}
 %%
-  
+ 
 /**
 Code Section
 Provides additional functionalities
