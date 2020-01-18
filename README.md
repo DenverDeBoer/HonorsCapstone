@@ -1,3 +1,3 @@
 ***S***imple  
 ***P***rogramming  
-***L***anguage
+***L***exicon
