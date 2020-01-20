@@ -1,34 +1,59 @@
+/**Resource: https://www.oreilly.com/library/view/flex-bison/9780596805418/ch01.html
 
 /**
 Definition
-Contains variables that can be accessed in
-yylex() and main()
+Contains a list of values for each token in the language
+An integer that can hold the value of numbers
 **/
 %{
+enum yytokentype {
+	WORD = 258,
+	NUMBER = 259,
+	ADD = 260,
+	SUB = 261,
+	MUL = 262,
+	DIV = 263,
+	POW = 264,
+	EOL = 265
+};
+
+int yylval;
 %}
   
 /**
 Rule Section
-These rules govern the validity of statements written
-for the language
-As a test...reads characters and returns if they are valid or not
+These rules govern the validity of tokens for the language
 **/
 %%
-[A-Z] {printf("%s is a capital letter and valid\n", yytext);}
-[a-z] {printf("%s is a lowercase letter and valid\n", yytext);}
-[0-9] {printf("%s is a digit and valid\n", yytext);}
-[-\+\*/] {printf("%s is an arithmetic and is valid\n", yytext);}
-[\t\n ] {printf("%s is whitespace and valid\n", yytext);}
+[A-Za-z]+ {return WORD;}
+[0-9]+ {yylval = atoi(yytext); return NUMBER;}
+"+" {return ADD;}
+"-" {return SUB;}
+"*" {return MUL;}
+"/" {return DIV;}
+"^" {return POW;}
+\n {return EOL;}
+[\t ] {}
 . {printf("%s is an invalid character\n", yytext);}
-(END) {return 0;}
 %%
  
 /**
 Code Section
 Provides additional functionalities
 **/
-int yywrap(){} 	//Wraps the rule section
-int main(){
-yylex();	//Main FLEX function that runs the rules section  
-return 0;
+int yywrap(){}; 	//Wraps the rule section
+
+//Print each token received and the associated value
+int main(int argc, char** argv) {
+	int token;
+	
+	while(token = yylex()) {
+		printf("%d", token);
+		if(token == NUMBER)
+			printf(" = %d\n", yylval);
+		else
+			printf(" = %s\n", yytext);
+	}
+	printf("\n");
+	return 0;
 }
