@@ -14,7 +14,13 @@ enum yytokentype {
 	MUL = 262,
 	DIV = 263,
 	POW = 264,
-	EOL = 265
+	OPENPAR = 265,
+	CLOSEPAR = 266,
+	OPENBRACE = 267,
+	CLOSEBRACE = 268,
+	OPENBRACKET = 269,
+	CLOSEBRACKET = 270,
+	QUOTE = 271
 };
 
 int yylval;
@@ -32,8 +38,14 @@ These rules govern the validity of tokens for the language
 "*" {return MUL;}
 "/" {return DIV;}
 "^" {return POW;}
-\n {return EOL;}
-[\t ] {}
+"(" {return OPENPAR;}
+")" {return CLOSEPAR;}
+"{" {return OPENBRACE;}
+"}" {return CLOSEBRACE;}
+"[" {return OPENBRACKET;}
+"]" {return CLOSEBRACKET;}
+(\"|') {return QUOTE;}
+[\n\t ] {}
 . {printf("%s is an invalid character\n", yytext);}
 %%
  
