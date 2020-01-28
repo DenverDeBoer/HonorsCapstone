@@ -7,20 +7,34 @@ An integer that can hold the value of numbers
 **/
 %{
 enum yytokentype {
+	/**Words and Numbers**/
 	WORD = 258,
 	NUMBER = 259,
+
+	/**Mathematical Operations**/
 	ADD = 260,
 	SUB = 261,
 	MUL = 262,
 	DIV = 263,
 	POW = 264,
+
+	/**Special Symbols**/
 	OPENPAR = 265,
 	CLOSEPAR = 266,
 	OPENBRACE = 267,
 	CLOSEBRACE = 268,
 	OPENBRACKET = 269,
 	CLOSEBRACKET = 270,
-	QUOTE = 271
+	QUOTE = 271,
+
+	/**Loops and Conditionals**/
+	WHILE = 272,
+	GREATERTHAN = 273,
+	LESSTHAN = 274,
+	EQUAL = 275,
+	NOT = 276,
+	IF = 277,
+	ELSE = 278
 };
 
 int yylval;
@@ -31,6 +45,9 @@ Rule Section
 These rules govern the validity of tokens for the language
 **/
 %%
+"while"	{return WHILE;}
+"if"	{return IF;}
+"else"	{return ELSE;}
 [A-Za-z]+ {return WORD;}
 [0-9]+ {yylval = atoi(yytext); return NUMBER;}
 "+" {return ADD;}
@@ -45,6 +62,10 @@ These rules govern the validity of tokens for the language
 "[" {return OPENBRACKET;}
 "]" {return CLOSEBRACKET;}
 (\"|') {return QUOTE;}
+">" {return GREATERTHAN;}
+"<" {return LESSTHAN;}
+"=" {return EQUAL;}
+"!" {return NOT;}
 [\n\t ] {}
 . {printf("%s is an invalid character\n", yytext);}
 %%
