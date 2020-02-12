@@ -1,4 +1,8 @@
-/**Resource: https://www.oreilly.com/library/view/flex-bison/9780596805418/ch01.html
+/**
+* Lexer for SPL language
+* Written By: Denver DeBoer
+* Resource: https://www.oreilly.com/library/view/flex-bison/9780596805418/ch01.html
+*/
 
 /**
 Definition
@@ -6,19 +10,21 @@ Contains a list of values for each token in the language
 An integer that can hold the value of numbers
 **/
 %{
+#include "splParser.tab.h"
+/**
 enum yytokentype {
-	/**Words and Numbers**/
+	COMMENT Words and Numbers
 	WORD = 258,
 	NUMBER = 259,
 
-	/**Mathematical Operations**/
+	COMMENT Mathematical Operations
 	ADD = 260,
 	SUB = 261,
 	MUL = 262,
 	DIV = 263,
 	POW = 264,
 
-	/**Special Symbols**/
+	COMMENT Special Symbols
 	OPENPAR = 265,
 	CLOSEPAR = 266,
 	OPENBRACE = 267,
@@ -27,15 +33,19 @@ enum yytokentype {
 	CLOSEBRACKET = 270,
 	QUOTE = 271,
 
-	/**Loops and Conditionals**/
+	COMMENT Loops and Conditionals
 	WHILE = 272,
 	GREATERTHAN = 273,
 	LESSTHAN = 274,
 	EQUAL = 275,
 	NOT = 276,
 	IF = 277,
-	ELSE = 278
+	ELSE = 278,
+
+	COMMENT End of Line
+	EOL = 279
 };
+**/
 
 int yylval;
 %}
@@ -66,6 +76,7 @@ These rules govern the validity of tokens for the language
 "<" {return LESSTHAN;}
 "=" {return EQUAL;}
 "!" {return NOT;}
+";" {return EOL;}
 [\n\t ] {}
 . {printf("%s is an invalid character\n", yytext);}
 %%
@@ -74,6 +85,8 @@ These rules govern the validity of tokens for the language
 Code Section
 Provides additional functionalities
 **/
+
+/**
 int yywrap(){}; 	//Wraps the rule section
 
 //Print each token received and the associated value
@@ -90,3 +103,4 @@ int main(int argc, char** argv) {
 	printf("\n");
 	return 0;
 }
+**/
