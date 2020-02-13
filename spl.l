@@ -45,9 +45,9 @@ enum yytokentype {
 	COMMENT End of Line
 	EOL = 279
 };
-**/
 
 int yylval;
+**/
 %}
   
 /**

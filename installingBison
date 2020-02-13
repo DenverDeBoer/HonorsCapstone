@@ -1,0 +1,15 @@
+Step 1: Download Bison source code from GNU repository
+	http://www.gnu.org/software/bison/
+
+Step 2: Extract the gz with command tar -zxvf
+	tar -zxvf bison-3.5.tar.gz
+
+Step 3: Change to the directory where the package extracted
+	cd bison-3.5
+
+Step 4: Configure the Bison packages
+	sudo ./configure
+
+Step 5: Compile and install Bison packages
+	sudo make
+	sudo make install

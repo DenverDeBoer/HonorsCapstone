@@ -17,7 +17,7 @@
 
 /* Rules Section */
 program: /*EMPTY*/
-       | program expression EOL {printf(" = %d\n", $2);}
+       | program expression EOL {printf("= %d\n", $2);}
 ;
 
 expression: factor
