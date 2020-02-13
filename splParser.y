@@ -5,6 +5,7 @@
 
 %{
 #include <stdio.h>
+#include <math.h>
 %}
 
 /* Declearation of Tokens */
@@ -13,35 +14,35 @@
 %token OPENPAR CLOSEPAR OPENBRACE CLOSEBRACE OPENBRACKET CLOSEBRACKET QUOTE
 %token WHILE GREATERTHAN LESSTHAN EQUAL NOT IF ELSE
 %token EOL
-%%
 
+%%
 /* Rules Section */
 program: /*EMPTY*/
-       | program expression EOL {printf("= %d\n", $2);}
+       | program addsub EOL {printf("= %d\n", $2);}
 ;
 
-expression: factor
-	  | expression ADD factor {$$ = $1 + $3;}
-	  | expression SUB factor {$$ = $1 - $3;}
+addsub: muldiv
+	  | muldiv ADD muldiv {$$ = $1 + $3;}
+	  | muldiv SUB muldiv {$$ = $1 - $3;}
 ;
 
-factor: term
-      | factor MUL term {$$ = $1 * $3;}
-      | factor DIV term {$$ = $1 / $3;}
+muldiv: power
+      | power MUL power {$$ = $1 * $3;}
+      | power DIV power {$$ = $1 / $3;}
 ;
 
-term: NUMBER
+power: NUMBER
+     | NUMBER POW power {$$ = $1 * $1;}
 ;
-
 %%
 
 /* Code Section */
-main(int argc, char** argv)
+int main(int argc, char** argv)
 {
 	yyparse();
 }
 
-yyerror(char* e)
+int yyerror(char* e)
 {
 	fprintf(stderr, "ERROR: %s\n", e);
 }
