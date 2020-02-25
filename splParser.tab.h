@@ -70,7 +70,8 @@ extern int yydebug;
     NOT = 276,
     IF = 277,
     ELSE = 278,
-    EOL = 279
+    EOL = 279,
+    DISPLAY = 280
   };
 #endif
 

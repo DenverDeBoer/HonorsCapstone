@@ -6,6 +6,8 @@
 %{
 #include <stdio.h>
 #include <math.h>
+int yylex(void);
+void yyerror(char*);
 %}
 
 /* Declearation of Tokens */
@@ -13,27 +15,38 @@
 %token ADD SUB MUL DIV POW
 %token OPENPAR CLOSEPAR OPENBRACE CLOSEBRACE OPENBRACKET CLOSEBRACKET QUOTE
 %token WHILE GREATERTHAN LESSTHAN EQUAL NOT IF ELSE
-%token EOL
+%token EOL DISPLAY
 
 %%
 /* Rules Section */
 program: /*EMPTY*/
-       | program addsub EOL {printf("= %d\n", $2);}
+       | program print EOL
+;
+
+print: equation
+       | DISPLAY WORD	{printf("%s\n", $1);}
+;
+
+equation: addsub	{printf("= %d\n",$1);}
+	| WORD EQUAL addsub {$1 = $3;}
 ;
 
 addsub: muldiv
-	  | muldiv ADD muldiv {$$ = $1 + $3;}
-	  | muldiv SUB muldiv {$$ = $1 - $3;}
+	  | addsub ADD addsub {$$ = $1 + $3;}
+	  | addsub SUB addsub {$$ = $1 - $3;}
 ;
 
 muldiv: power
-      | power MUL power {$$ = $1 * $3;}
-      | power DIV power {$$ = $1 / $3;}
+      | muldiv MUL muldiv {$$ = $1 * $3;}
+      | muldiv DIV muldiv {$$ = $1 / $3;}
 ;
 
-power: NUMBER
-     | NUMBER POW power {$$ = $1 * $1;}
+power: par
+     | par POW par {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1; i++) x*=$1; $$ = x;}}
 ;
+
+par: NUMBER
+   | OPENPAR addsub CLOSEPAR
 %%
 
 /* Code Section */
@@ -42,7 +55,7 @@ int main(int argc, char** argv)
 	yyparse();
 }
 
-int yyerror(char* e)
+void yyerror(char* e)
 {
 	fprintf(stderr, "ERROR: %s\n", e);
 }
