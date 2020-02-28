@@ -465,7 +465,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   26
+#define YYLAST   29
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  26
@@ -474,7 +474,7 @@ union yyalloc
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  18
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  31
+#define YYNSTATES  33
 
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   280
@@ -568,10 +568,10 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -16,     0,   -16,   -15,   -16,    -2,     6,   -13,   -16,    -5,
-       8,    10,    13,   -16,    19,     1,   -16,   -16,   -16,    -2,
-      -2,    -2,    -2,    -2,   -16,   -16,     8,     8,    10,    10,
-      13
+     -16,     0,   -16,   -15,   -16,    -2,     9,   -13,   -16,     2,
+       8,    10,    13,   -16,     5,     1,    19,   -16,   -16,    -2,
+      -2,    -2,    -2,    -2,   -16,   -16,    16,     8,     8,    10,
+      10,    13,   -16
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -580,15 +580,15 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        2,     0,     1,     0,    17,     0,     0,     0,     5,     0,
-       8,    11,    14,    16,     0,     0,     6,     4,     3,     0,
-       0,     0,     0,     0,     7,    18,     9,    10,    12,    13,
-      15
+       8,    11,    14,    16,     0,     0,     0,     4,     3,     0,
+       0,     0,     0,     0,     7,    18,     0,     9,    10,    12,
+      13,    15,     6
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -16,   -16,   -16,   -16,   -16,    -4,    -1,     3,   -16
+     -16,   -16,   -16,   -16,   -16,    -4,    -1,     6,   -16
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -602,16 +602,16 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       2,    15,     4,     3,     4,    14,    19,    20,     5,    16,
-       5,    17,    25,    19,    20,    26,    27,    21,    22,    18,
-      28,    29,    23,    24,     0,     6,    30
+       2,    15,     4,     3,     4,    14,    19,    20,     5,    24,
+       5,    17,    25,    19,    20,    27,    28,    21,    22,    16,
+      29,    30,    23,    26,     0,     6,    18,    32,     0,    31
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0,     5,     4,     3,     4,    20,     5,     6,    10,     3,
-      10,    24,    11,     5,     6,    19,    20,     7,     8,    24,
-      21,    22,     9,     4,    -1,    25,    23
+       0,     5,     4,     3,     4,    20,     5,     6,    10,     4,
+      10,    24,    11,     5,     6,    19,    20,     7,     8,    10,
+      21,    22,     9,     4,    -1,    25,    24,    11,    -1,    23
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -619,9 +619,9 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,    27,     0,     3,     4,    10,    25,    28,    29,    30,
-      31,    32,    33,    34,    20,    31,     3,    24,    24,     5,
-       6,     7,     8,     9,     4,    11,    31,    31,    32,    32,
-      33
+      31,    32,    33,    34,    20,    31,    10,    24,    24,     5,
+       6,     7,     8,     9,     4,    11,     4,    31,    31,    32,
+      32,    33,    11
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -634,7 +634,7 @@ static const yytype_int8 yyr1[] =
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     0,     3,     3,     1,     2,     3,     1,     3,
+       0,     2,     0,     3,     3,     1,     4,     3,     1,     3,
        3,     1,     3,     3,     1,     3,     1,     1,     3
 };
 
@@ -1332,7 +1332,7 @@ yyreduce:
     {
   case 6:
 #line 28 "splParser.y"
-                        {printf("%s\n", yyvsp[-1]);}
+                                                {printf("%s\n", yyvsp[-3]);}
 #line 1337 "splParser.tab.c"
     break;
 

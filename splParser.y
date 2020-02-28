@@ -25,7 +25,7 @@ program: /*EMPTY*/
 ;
 
 print: var
-       | DISPLAY WORD	{printf("%s\n", $1);}		/* BUG: displaying to screen */
+       | DISPLAY OPENPAR NUMBER CLOSEPAR	{printf("%s\n", $1);}		/* BUG: displaying to screen */
 ;
 
 var: WORD EQUAL NUMBER	{$$ = $3;}			/* BUG: declaring and initializing variables */
