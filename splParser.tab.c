@@ -1338,7 +1338,7 @@ yyreduce:
     {
   case 6:
 #line 28 "splParser.y"
-                                                {printf("%s\n", yyvsp[-3]);}
+                                                {printf("%d\n", yyvsp[-1]);}
 #line 1343 "splParser.tab.c"
     break;
 

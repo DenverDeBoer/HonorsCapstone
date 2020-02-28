@@ -58,6 +58,7 @@ These rules govern the validity of tokens for the language
 "while"	{return WHILE;}
 "if"	{return IF;}
 "else"	{return ELSE;}
+"display" {return DISPLAY;}
 [A-Za-z]+ {return WORD;}
 [0-9]+ {yylval = atoi(yytext); return NUMBER;}
 -[0-9]+ {yylval = atoi(yytext); return nNUMBER;}
@@ -79,7 +80,6 @@ These rules govern the validity of tokens for the language
 "!" {return NOT;}
 "\n" {return EOL;}
 [\t ] {}
-"display" {return DISPLAY;}
 . {printf("%s is an invalid character\n", yytext);}
 %%
  
