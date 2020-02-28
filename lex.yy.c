@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 26
-#define YY_END_OF_BUFFER 27
+#define YY_NUM_RULES 27
+#define YY_END_OF_BUFFER 28
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,9 +362,9 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[47] =
     {   0,
-        0,    0,   27,   25,   23,   22,   21,   17,   11,   12,
-        8,    6,    7,    9,    5,   19,   20,   18,    4,   15,
-       16,   10,    4,    4,    4,    4,   13,   14,    5,    5,
+        0,    0,   28,   26,   24,   23,   22,   18,   12,   13,
+        9,    7,    8,   10,    5,   20,   21,   19,    4,   16,
+       17,   11,    4,    4,    4,    4,   14,   15,    6,    5,
         4,    4,    4,    2,    4,    4,    4,    4,    4,    3,
         4,    4,    1,    4,    4,    0
     } ;
@@ -826,110 +826,115 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 63 "spl.l"
-{return ADD;}
+{yylval = atoi(yytext); return nNUMBER;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 64 "spl.l"
-{return SUB;}
+{return ADD;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 65 "spl.l"
-{return MUL;}
+{return SUB;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 66 "spl.l"
-{return DIV;}
+{return MUL;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 67 "spl.l"
-{return POW;}
+{return DIV;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 68 "spl.l"
-{return OPENPAR;}
+{return POW;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 69 "spl.l"
-{return CLOSEPAR;}
+{return OPENPAR;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 70 "spl.l"
-{return OPENBRACE;}
+{return CLOSEPAR;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 71 "spl.l"
-{return CLOSEBRACE;}
+{return OPENBRACE;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 72 "spl.l"
-{return OPENBRACKET;}
+{return CLOSEBRACE;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 73 "spl.l"
-{return CLOSEBRACKET;}
+{return OPENBRACKET;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 74 "spl.l"
-{return QUOTE;}
+{return CLOSEBRACKET;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 75 "spl.l"
-{return GREATERTHAN;}
+{return QUOTE;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 76 "spl.l"
-{return LESSTHAN;}
+{return GREATERTHAN;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 77 "spl.l"
-{return EQUAL;}
+{return LESSTHAN;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 78 "spl.l"
-{return NOT;}
+{return EQUAL;}
 	YY_BREAK
 case 22:
-/* rule 22 can match eol */
 YY_RULE_SETUP
 #line 79 "spl.l"
-{return EOL;}
+{return NOT;}
 	YY_BREAK
 case 23:
+/* rule 23 can match eol */
 YY_RULE_SETUP
 #line 80 "spl.l"
-{}
+{return EOL;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 81 "spl.l"
-{return DISPLAY;}
+{}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 82 "spl.l"
-{printf("%s is an invalid character\n", yytext);}
+{return DISPLAY;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 83 "spl.l"
+{printf("%s is an invalid character\n", yytext);}
+	YY_BREAK
+case 27:
+YY_RULE_SETUP
+#line 84 "spl.l"
 ECHO;
 	YY_BREAK
-#line 933 "lex.yy.c"
+#line 938 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1934,7 +1939,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 83 "spl.l"
+#line 84 "spl.l"
 
  
 /**

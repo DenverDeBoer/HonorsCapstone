@@ -11,7 +11,7 @@ void yyerror(char*);
 %}
 
 /* Declearation of Tokens */
-%token WORD NUMBER
+%token WORD NUMBER nNUMBER
 %token ADD SUB MUL DIV POW
 %token OPENPAR CLOSEPAR OPENBRACE CLOSEBRACE OPENBRACKET CLOSEBRACKET QUOTE
 %token WHILE GREATERTHAN LESSTHAN EQUAL NOT IF ELSE
@@ -36,6 +36,7 @@ equation: addsub	{printf("= %d\n",$1);}
 
 addsub: addsub ADD addsub {$$ = $1 + $3;}
       	| addsub SUB addsub {$$ = $1 - $3;}
+	| addsub nNUMBER {$$ = $1 + $2;}
 	| muldiv
 ;
 
@@ -49,6 +50,7 @@ power: power POW power {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1
 ;
 
 par: NUMBER
+   | nNUMBER
    | OPENPAR addsub CLOSEPAR				/* BUG: parenthesis in order of operatons */
 %%
 
