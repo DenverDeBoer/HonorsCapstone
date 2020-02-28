@@ -51,7 +51,7 @@ power: power POW power {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1
 
 par: NUMBER
    | nNUMBER
-   | OPENPAR addsub CLOSEPAR				/* BUG: parenthesis in order of operatons */
+   | OPENPAR addsub CLOSEPAR				/* BUG: parenthesis not returning value? */
 %%
 
 /* Code Section */
