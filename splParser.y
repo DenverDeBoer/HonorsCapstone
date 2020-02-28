@@ -20,14 +20,15 @@ void yyerror(char*);
 %%
 /* Rules Section */
 program: /*EMPTY*/
+       | program equation EOL
        | program print EOL
 ;
 
-print: equation
-       | DISPLAY var	{printf("%s\n", $1);}
+print: var
+       | DISPLAY WORD	{printf("%s\n", $1);}		/* BUG: displaying to screen */
 ;
 
-var: WORD EQUAL NUMBER	{$$ = $3;}
+var: WORD EQUAL NUMBER	{$$ = $3;}			/* BUG: declaring and initializing variables */
 ;
 
 equation: addsub	{printf("= %d\n",$1);}
@@ -48,7 +49,7 @@ power: power POW power {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1
 ;
 
 par: NUMBER
-   | OPENPAR addsub CLOSEPAR
+   | OPENPAR addsub CLOSEPAR				/* BUG: parenthesis in order of operatons */
 %%
 
 /* Code Section */
