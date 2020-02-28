@@ -59,7 +59,7 @@ These rules govern the validity of tokens for the language
 "if"	{return IF;}
 "else"	{return ELSE;}
 [A-Za-z]+ {return WORD;}
-[0-9]+ {yylval = atoi(yytext); return NUMBER;}
+([0-9]+|-[0-9]+) {yylval = atoi(yytext); return NUMBER;}
 "+" {return ADD;}
 "-" {return SUB;}
 "*" {return MUL;}

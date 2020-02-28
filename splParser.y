@@ -24,25 +24,27 @@ program: /*EMPTY*/
 ;
 
 print: equation
-       | DISPLAY WORD	{printf("%s\n", $1);}
+       | DISPLAY var	{printf("%s\n", $1);}
+;
+
+var: WORD EQUAL NUMBER	{$$ = $3;}
 ;
 
 equation: addsub	{printf("= %d\n",$1);}
-	| WORD EQUAL addsub {$1 = $3;}
 ;
 
-addsub: muldiv
-	  | addsub ADD addsub {$$ = $1 + $3;}
-	  | addsub SUB addsub {$$ = $1 - $3;}
+addsub: addsub ADD addsub {$$ = $1 + $3;}
+      	| addsub SUB addsub {$$ = $1 - $3;}
+	| muldiv
 ;
 
-muldiv: power
-      | muldiv MUL muldiv {$$ = $1 * $3;}
-      | muldiv DIV muldiv {$$ = $1 / $3;}
+muldiv: muldiv MUL muldiv {$$ = $1 * $3;}
+      	| muldiv DIV muldiv {$$ = $1 / $3;}
+	| power
 ;
 
-power: par
-     | par POW par {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1; i++) x*=$1; $$ = x;}}
+power: power POW power {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1; i++) x*=$1; $$ = x;}}
+     | par
 ;
 
 par: NUMBER
