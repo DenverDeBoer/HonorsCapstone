@@ -6,12 +6,13 @@
 %{
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 int yylex(void);
 void yyerror(char*);
 %}
 
 /* Declearation of Tokens */
-%token WORD NUMBER nNUMBER
+%token STRING WORD NUMBER nNUMBER
 %token ADD SUB MUL DIV POW
 %token OPENPAR CLOSEPAR OPENBRACE CLOSEBRACE OPENBRACKET CLOSEBRACKET QUOTE
 %token WHILE GREATERTHAN LESSTHAN EQUAL NOT IF ELSE
@@ -24,14 +25,12 @@ program: /*EMPTY*/
        | program print EOL
 ;
 
-print: var
-     | DISPLAY OPENPAR NUMBER CLOSEPAR	{printf("%d\n", $3);}		/* BUG: displaying to screen */
+print: DISPLAY OPENPAR WORD CLOSEPAR	{printf("%d\n", $3);}
+     | DISPLAY OPENPAR equation CLOSEPAR	{printf("%d\n", $3);}
 ;
 
-var: WORD EQUAL NUMBER	{int $$ = $3; printf("%d\n", $$);}			/* BUG: declaring and initializing variables */
-;
-
-equation: addsub	{printf("= %d\n",$1);}
+equation: addsub	{printf("%d\n", $1);}
+	| WORD EQUAL addsub {int $$ = $3;}		/* BUG: equations don't assign result to variable */
 ;
 
 addsub: addsub ADD addsub {$$ = $1 + $3;}

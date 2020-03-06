@@ -55,6 +55,7 @@ Rule Section
 These rules govern the validity of tokens for the language
 **/
 %%
+(["'])(.*?)\1 {return STRING;}
 "while"	{return WHILE;}
 "if"	{return IF;}
 "else"	{return ELSE;}
