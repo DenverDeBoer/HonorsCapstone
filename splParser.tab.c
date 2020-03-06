@@ -1338,13 +1338,13 @@ yyreduce:
     {
   case 6:
 #line 28 "splParser.y"
-                                                {printf("%d\n", yyvsp[-1]);}
+                                        {printf("%d\n", yyvsp[-1]);}
 #line 1343 "splParser.tab.c"
     break;
 
   case 7:
 #line 31 "splParser.y"
-                        {yyval = yyvsp[0];}
+                        {int yyval = yyvsp[0]; printf("%d\n", yyval);}
 #line 1349 "splParser.tab.c"
     break;
 
@@ -1362,13 +1362,13 @@ yyreduce:
 
   case 10:
 #line 38 "splParser.y"
-                            {yyval = yyvsp[-2] - yyvsp[0];}
+                          {yyval = yyvsp[-2] - yyvsp[0];}
 #line 1367 "splParser.tab.c"
     break;
 
   case 11:
 #line 39 "splParser.y"
-                         {yyval = yyvsp[-1] + yyvsp[0];}
+                       {yyval = yyvsp[-1] + yyvsp[0];}
 #line 1373 "splParser.tab.c"
     break;
 
@@ -1380,7 +1380,7 @@ yyreduce:
 
   case 14:
 #line 44 "splParser.y"
-                            {yyval = yyvsp[-2] / yyvsp[0];}
+                          {yyval = yyvsp[-2] / yyvsp[0];}
 #line 1385 "splParser.tab.c"
     break;
 

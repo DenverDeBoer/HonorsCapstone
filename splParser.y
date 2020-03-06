@@ -28,7 +28,7 @@ print: var
      | DISPLAY OPENPAR NUMBER CLOSEPAR	{printf("%d\n", $3);}		/* BUG: displaying to screen */
 ;
 
-var: WORD EQUAL NUMBER	{$$ = $3;}			/* BUG: declaring and initializing variables */
+var: WORD EQUAL NUMBER	{int $$ = $3; printf("%d\n", $$);}			/* BUG: declaring and initializing variables */
 ;
 
 equation: addsub	{printf("= %d\n",$1);}
