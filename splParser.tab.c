@@ -543,7 +543,7 @@ static const char *const yytname[] =
   "CLOSEBRACE", "OPENBRACKET", "CLOSEBRACKET", "QUOTE", "WHILE",
   "GREATERTHAN", "LESSTHAN", "EQUAL", "NOT", "IF", "ELSE", "EOL",
   "DISPLAY", "$accept", "program", "print", "equation", "addsub", "muldiv",
-  "power", "par", YY_NULLPTR
+  "power", "term", YY_NULLPTR
 };
 #endif
 
@@ -1400,8 +1400,26 @@ yyreduce:
 #line 1401 "splParser.tab.c"
     break;
 
+  case 18:
+#line 51 "splParser.y"
+                                {yyval = yyvsp[0];}
+#line 1407 "splParser.tab.c"
+    break;
 
-#line 1405 "splParser.tab.c"
+  case 19:
+#line 52 "splParser.y"
+                                {yyval = yyvsp[0];}
+#line 1413 "splParser.tab.c"
+    break;
+
+  case 20:
+#line 53 "splParser.y"
+                                {yyval = yyvsp[-1];}
+#line 1419 "splParser.tab.c"
+    break;
+
+
+#line 1423 "splParser.tab.c"
 
       default: break;
     }

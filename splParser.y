@@ -45,12 +45,12 @@ muldiv: muldiv MUL muldiv {$$ = $1 * $3;}
 ;
 
 power: power POW power {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1; i++) x*=$1; $$ = x;}}
-     | par
+     | term
 ;
 
-par: NUMBER
-   | nNUMBER
-   | OPENPAR addsub CLOSEPAR				/* BUG: parenthesis not returning value? */
+term: NUMBER			{$$ = $1;}
+   | nNUMBER			{$$ = $1;}
+   | OPENPAR addsub CLOSEPAR	{$$ = $2;}
 %%
 
 /* Code Section */
