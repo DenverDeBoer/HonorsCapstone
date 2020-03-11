@@ -21,16 +21,8 @@ void yyerror(char*);
 %%
 /* Rules Section */
 program: /*EMPTY*/
-       | program equation EOL
+       | program addsub EOL	{printf("%d\n", $2);}
        | program print EOL
-;
-
-print: DISPLAY OPENPAR WORD CLOSEPAR	{printf("%d\n", $3);}
-     | DISPLAY OPENPAR equation CLOSEPAR	{printf("%d\n", $3);}
-;
-
-equation: addsub	{printf("%d\n", $1);}
-	| WORD EQUAL addsub {int $$ = $3;}		/* BUG: equations don't assign result to variable */
 ;
 
 addsub: addsub ADD addsub {$$ = $1 + $3;}
@@ -40,7 +32,7 @@ addsub: addsub ADD addsub {$$ = $1 + $3;}
 ;
 
 muldiv: muldiv MUL muldiv {$$ = $1 * $3;}
-      | muldiv DIV muldiv {$$ = $1 / $3;}
+      | muldiv DIV muldiv {if($3 != 0) $$ = $1 / $3; else printf("DIVISION BY ZERO ERROR\n");}
       | power
 ;
 
@@ -51,6 +43,15 @@ power: power POW power {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1
 term: NUMBER			{$$ = $1;}
    | nNUMBER			{$$ = $1;}
    | OPENPAR addsub CLOSEPAR	{$$ = $2;}
+;
+
+print: DISPLAY OPENPAR contents CLOSEPAR	{printf("%d\n", $3);} /* BUG: displaying text */
+;
+
+contents: WORD	{$$ = $1;}
+	| addsub {$$ = $1;}
+	| STRING {$$ = $1;} /*{char s[10]; char c[] = $1; if(strlen(c) > 2) strncpy(s, c+1, strlen(c)-2); else s = ""; $$ = s;}*/
+;
 %%
 
 /* Code Section */
