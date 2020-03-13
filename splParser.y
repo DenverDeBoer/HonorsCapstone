@@ -33,7 +33,7 @@ addsub: addsub ADD addsub {$$ = $1 + $3;}
 ;
 
 muldiv: muldiv MUL muldiv {$$ = $1 * $3;}
-      | muldiv DIV muldiv {if($3 != 0) $$ = $1 / $3; else printf("DIVISION BY ZERO ERROR\n");}
+      | muldiv DIV muldiv {if($3 != 0) $$ = $1 / $3; else;}
       | power
 ;
 

@@ -1372,7 +1372,7 @@ yyreduce:
 
   case 11:
 #line 36 "splParser.y"
-                          {if(yyvsp[0] != 0) yyval = yyvsp[-2] / yyvsp[0]; else printf("DIVISION BY ZERO ERROR\n");}
+                          {if(yyvsp[0] != 0) yyval = yyvsp[-2] / yyvsp[0]; else;}
 #line 1377 "splParser.tab.c"
     break;
 
