@@ -22,6 +22,7 @@ void yyerror(char*);
 /* Rules Section */
 program: /*EMPTY*/
        | program addsub EOL	{printf("%d\n", $2);}
+       | program var EOL
        | program print EOL
 ;
 
@@ -43,6 +44,9 @@ power: power POW power {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1
 term: NUMBER			{$$ = $1;}
    | nNUMBER			{$$ = $1;}
    | OPENPAR addsub CLOSEPAR	{$$ = $2;}
+;
+
+var: WORD EQUAL contents	{$$ = $3;}	/*BUG: Storing arithemtic results*/
 ;
 
 print: DISPLAY OPENPAR contents CLOSEPAR	{printf("%d\n", $3);} /* BUG: displaying text */
