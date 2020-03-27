@@ -79,8 +79,8 @@ These rules govern the validity of tokens for the language
 "<" {return LESSTHAN;}
 "=" {return EQUAL;}
 "!" {return NOT;}
-"\n" {return EOL;}
-[\t ] {}
+";" {return EOL;}
+[\t\n ] {}
 . {printf("%s is an invalid character\n", yytext);}
 %%
  

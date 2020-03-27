@@ -21,9 +21,13 @@ void yyerror(char*);
 %%
 /* Rules Section */
 program: /*EMPTY*/
-       | program addsub EOL	{printf("%d\n", $2);}
-       | program var EOL
-       | program print EOL
+       | program statement EOL	{printf("%d\n", $2);}
+;
+
+statement: addsub
+	 | var
+	 | print
+	 | ifstat
 ;
 
 addsub: addsub ADD addsub {$$ = $1 + $3;}
@@ -55,6 +59,19 @@ print: DISPLAY OPENPAR contents CLOSEPAR	{printf("%d\n", $3);} /* BUG: displayin
 contents: WORD	{$$ = $1;}
 	| addsub {$$ = $1;}
 	| STRING {$$ = $1;} /*{char s[10]; char c[] = $1; if(strlen(c) > 2) strncpy(s, c+1, strlen(c)-2); else s = ""; $$ = s;}*/
+;
+
+ifstat: IF OPENPAR conditional CLOSEPAR OPENBRACE program CLOSEBRACE	{if($3 < 1);}
+;
+
+conditional: conditional LESSTHAN conditional		{if($1 < $2) $$ = 1;}
+	   | conditional GREATERTHAN conditional	{if($1 > $2) $$ = 1;}
+	   | conditional EQUAL EQUAL conditional	{if($1 == $2) $$ = 1;}
+	   | conditional LESSTHAN EQUAL conditional	{if($1 <= $2) $$ = 1;}
+	   | conditional GREATERTHAN EQUAL conditional	{if($1 >= $2) $$ = 1;}
+	   | NUMBER					{if($1 > 0) $$ = 1;}
+	   | nNUMBER					{$$ = 0;}
+	   | WORD					{if($1 > 0) $$ = 1;}
 ;
 %%
 
