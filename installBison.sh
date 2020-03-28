@@ -1,5 +1,5 @@
 #Download Bison from http://ftp.gnu.org/gnu/bison/
-#Assuming starting from ~/SPL
+#bison-3.5.tar.gz
 #Assuming Bison folder is in ~/Downloads
 cd ..
 cd Downloads
