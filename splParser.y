@@ -62,21 +62,16 @@ var: WORD EQUAL term	{$$ = $3;}
 ;
 
 /* Displays information to the screen */
-print: DISPLAY OPENPAR term CLOSEPAR	{printf("DISPLAY: %d\n", $3);}
+print: DISPLAY OPENPAR addsub CLOSEPAR {printf("DISPLAY: %d\n", $3);}
 /* DISPLAY STRING */
 ;
 
 /* If statement to test if a block of code should be run */
-ifstat: IF OPENPAR conditional CLOSEPAR OPENBRACE program CLOSEBRACE	{if($3 >= 1) $$ = $6; else printf("IF: FALSE\n");}
-;
-
-/* Conditional statements used to test for true or false (True is > 0) */
-conditional: conditional LESSTHAN term		{if($1 < $2) $$ = 1;}
-	   | conditional GREATERTHAN term	{if($1 > $2) $$ = 1;}
-	   | conditional EQUAL EQUAL term	{if($1 == $2) $$ = 1;}
-	   | conditional LESSTHAN EQUAL term	{if($1 <= $2) $$ = 1;}
-	   | conditional GREATERTHAN EQUAL term	{if($1 >= $2) $$ = 1;}
-	   | term				{if($1 > 0) $$ = 1;}
+ifstat: IF OPENPAR term LESSTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE 		{if($3 < $5) printf("LT: %d\t%d\n", $3,$5); else printf("FALSE\n");}
+      | IF OPENPAR term GREATERTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE  	{if($3 > $5) printf("GT: %d\t%d\n", $3,$5); else printf("FALSE\n");}
+      | IF OPENPAR term EQUAL EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE 	{if($3 == $6) printf("EE: %d\t%d\n", $3,$6); else printf("FALSE\n");}
+      | IF OPENPAR term LESSTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE 	{if($3 <= $6) printf("LTE: %d\t%d\n", $3,$6); else printf("FALSE\n");}
+      | IF OPENPAR term GREATERTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE  {if($3 >= $6) printf("GTE: %d\t%d\n", $3,$6); else printf("FALSE\n");}
 ;
 %%
 
