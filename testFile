@@ -1,0 +1,5 @@
+if(7 < 1) { display(5-5) };
+if(7 > 1) { display(7-6) };
+if(7 == 7) {display(5-4) };
+if(7 <= 4) {display(5*0) };
+if(7 >= 7) {display(1^5) };

@@ -5,6 +5,7 @@
 
 %{
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 int yylex(void);
@@ -21,7 +22,7 @@ void yyerror(char*);
 %%
 /* Rules Section */
 program: /*EMPTY*/
-       | program statement EOL	{printf("PROGRAM: %d\n", $2);}
+       | program statement EOL	/*{printf("PROGRAM: %d\n", $2);}*/
 ;
 
 /* Branches off into various functions of the language */
@@ -67,17 +68,21 @@ print: DISPLAY OPENPAR addsub CLOSEPAR {printf("DISPLAY: %d\n", $3);}
 ;
 
 /* If statement to test if a block of code should be run */
-ifstat: IF OPENPAR term LESSTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE 		{if($3 < $5) printf("LT: %d\t%d\n", $3,$5); else printf("FALSE\n");}
-      | IF OPENPAR term GREATERTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE  	{if($3 > $5) printf("GT: %d\t%d\n", $3,$5); else printf("FALSE\n");}
-      | IF OPENPAR term EQUAL EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE 	{if($3 == $6) printf("EE: %d\t%d\n", $3,$6); else printf("FALSE\n");}
-      | IF OPENPAR term LESSTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE 	{if($3 <= $6) printf("LTE: %d\t%d\n", $3,$6); else printf("FALSE\n");}
-      | IF OPENPAR term GREATERTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE  {if($3 >= $6) printf("GTE: %d\t%d\n", $3,$6); else printf("FALSE\n");}
+ifstat: IF OPENPAR term LESSTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE 		{if($3 < $5) $$ = $8; else printf("FALSE\n");}
+      | IF OPENPAR term GREATERTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE  	{if($3 > $5) $$ = $8; else printf("FALSE\n");}
+      | IF OPENPAR term EQUAL EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE 	{if($3 == $6) $$ = $9; else printf("FALSE\n");}
+      | IF OPENPAR term LESSTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE 	{if($3 <= $6) $$ = $9; else printf("FALSE\n");}
+      | IF OPENPAR term GREATERTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE  {if($3 >= $6) $$ = $9; else printf("FALSE\n");}
 ;
 %%
 
 /* Code Section */
 int main(int argc, char** argv)
 {
+	if((argc > 1) && (freopen(argv[1], "r", stdin) == NULL)) {
+		printf("ERROR opening file\n");
+		exit(1);
+	}
 	yyparse();
 }
 

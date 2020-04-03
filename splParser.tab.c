@@ -69,12 +69,13 @@
 #line 6 "splParser.y"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 int yylex(void);
 void yyerror(char*);
 
-#line 78 "splParser.tab.c"
+#line 79 "splParser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -527,9 +528,9 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    23,    23,    24,    28,    29,    30,    31,    35,    36,
-      37,    38,    42,    43,    44,    48,    49,    53,    54,    55,
-      56,    60,    65,    70,    71,    72,    73,    74
+       0,    24,    24,    25,    29,    30,    31,    32,    36,    37,
+      38,    39,    43,    44,    45,    49,    50,    54,    55,    56,
+      57,    61,    66,    71,    72,    73,    74,    75
 };
 #endif
 
@@ -1357,116 +1358,110 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 3:
-#line 24 "splParser.y"
-                                {printf("PROGRAM: %d\n", yyvsp[-1]);}
-#line 1364 "splParser.tab.c"
-    break;
-
   case 8:
-#line 35 "splParser.y"
+#line 36 "splParser.y"
                           {yyval = yyvsp[-2] + yyvsp[0];}
-#line 1370 "splParser.tab.c"
+#line 1365 "splParser.tab.c"
     break;
 
   case 9:
-#line 36 "splParser.y"
+#line 37 "splParser.y"
                           {yyval = yyvsp[-2] - yyvsp[0];}
-#line 1376 "splParser.tab.c"
+#line 1371 "splParser.tab.c"
     break;
 
   case 10:
-#line 37 "splParser.y"
+#line 38 "splParser.y"
                           {yyval = yyvsp[-1] + yyvsp[0];}
-#line 1382 "splParser.tab.c"
+#line 1377 "splParser.tab.c"
     break;
 
   case 12:
-#line 42 "splParser.y"
+#line 43 "splParser.y"
                          {yyval = yyvsp[-2] * yyvsp[0];}
-#line 1388 "splParser.tab.c"
+#line 1383 "splParser.tab.c"
     break;
 
   case 13:
-#line 43 "splParser.y"
+#line 44 "splParser.y"
                          {if(yyvsp[0] != 0) yyval = yyvsp[-2] / yyvsp[0]; else;}
-#line 1394 "splParser.tab.c"
+#line 1389 "splParser.tab.c"
     break;
 
   case 15:
-#line 48 "splParser.y"
+#line 49 "splParser.y"
                       {if(yyvsp[0]==0) yyval=1; else{int x = yyvsp[-2]; for(int i = 0; i < yyvsp[0]-1; i++) x*=yyvsp[-2]; yyval = x;}}
-#line 1400 "splParser.tab.c"
+#line 1395 "splParser.tab.c"
     break;
 
   case 17:
-#line 53 "splParser.y"
+#line 54 "splParser.y"
                                 {yyval = yyvsp[0];}
-#line 1406 "splParser.tab.c"
+#line 1401 "splParser.tab.c"
     break;
 
   case 18:
-#line 54 "splParser.y"
+#line 55 "splParser.y"
                                 {yyval = yyvsp[0];}
-#line 1412 "splParser.tab.c"
+#line 1407 "splParser.tab.c"
     break;
 
   case 19:
-#line 55 "splParser.y"
+#line 56 "splParser.y"
                                 {yyval = yyvsp[0];}
-#line 1418 "splParser.tab.c"
+#line 1413 "splParser.tab.c"
     break;
 
   case 20:
-#line 56 "splParser.y"
+#line 57 "splParser.y"
                                 {yyval = yyvsp[-1];}
-#line 1424 "splParser.tab.c"
+#line 1419 "splParser.tab.c"
     break;
 
   case 21:
-#line 60 "splParser.y"
+#line 61 "splParser.y"
                         {yyval = yyvsp[0];}
-#line 1430 "splParser.tab.c"
+#line 1425 "splParser.tab.c"
     break;
 
   case 22:
-#line 65 "splParser.y"
+#line 66 "splParser.y"
                                        {printf("DISPLAY: %d\n", yyvsp[-1]);}
-#line 1436 "splParser.tab.c"
+#line 1431 "splParser.tab.c"
     break;
 
   case 23:
-#line 70 "splParser.y"
-                                                                                        {if(yyvsp[-6] < yyvsp[-4]) printf("LT: %d\t%d\n", yyvsp[-6],yyvsp[-4]); else printf("FALSE\n");}
-#line 1442 "splParser.tab.c"
+#line 71 "splParser.y"
+                                                                                        {if(yyvsp[-6] < yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
+#line 1437 "splParser.tab.c"
     break;
 
   case 24:
-#line 71 "splParser.y"
-                                                                                        {if(yyvsp[-6] > yyvsp[-4]) printf("GT: %d\t%d\n", yyvsp[-6],yyvsp[-4]); else printf("FALSE\n");}
-#line 1448 "splParser.tab.c"
+#line 72 "splParser.y"
+                                                                                        {if(yyvsp[-6] > yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
+#line 1443 "splParser.tab.c"
     break;
 
   case 25:
-#line 72 "splParser.y"
-                                                                                        {if(yyvsp[-7] == yyvsp[-4]) printf("EE: %d\t%d\n", yyvsp[-7],yyvsp[-4]); else printf("FALSE\n");}
-#line 1454 "splParser.tab.c"
+#line 73 "splParser.y"
+                                                                                        {if(yyvsp[-7] == yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
+#line 1449 "splParser.tab.c"
     break;
 
   case 26:
-#line 73 "splParser.y"
-                                                                                        {if(yyvsp[-7] <= yyvsp[-4]) printf("LTE: %d\t%d\n", yyvsp[-7],yyvsp[-4]); else printf("FALSE\n");}
-#line 1460 "splParser.tab.c"
+#line 74 "splParser.y"
+                                                                                        {if(yyvsp[-7] <= yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
+#line 1455 "splParser.tab.c"
     break;
 
   case 27:
-#line 74 "splParser.y"
-                                                                                        {if(yyvsp[-7] >= yyvsp[-4]) printf("GTE: %d\t%d\n", yyvsp[-7],yyvsp[-4]); else printf("FALSE\n");}
-#line 1466 "splParser.tab.c"
+#line 75 "splParser.y"
+                                                                                        {if(yyvsp[-7] >= yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
+#line 1461 "splParser.tab.c"
     break;
 
 
-#line 1470 "splParser.tab.c"
+#line 1465 "splParser.tab.c"
 
       default: break;
     }
@@ -1698,12 +1693,16 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 76 "splParser.y"
+#line 77 "splParser.y"
 
 
 /* Code Section */
 int main(int argc, char** argv)
 {
+	if((argc > 1) && (freopen(argv[1], "r", stdin) == NULL)) {
+		printf("ERROR opening file\n");
+		exit(1);
+	}
 	yyparse();
 }
 
