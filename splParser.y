@@ -1,6 +1,7 @@
 /*
 * Parser for SPL language
 * Written By: Denver DeBoer
+* Resource: http://www.admb-project.org/tools/flex/compiler.pdf
 */
 
 %{
@@ -18,7 +19,6 @@ void yyerror(char*);
 %token OPENPAR CLOSEPAR OPENBRACE CLOSEBRACE OPENBRACKET CLOSEBRACKET QUOTE
 %token WHILE GREATERTHAN LESSTHAN EQUAL NOT IF ELSE
 %token EOL DISPLAY
-
 %%
 /* Rules Section */
 program: /*EMPTY*/

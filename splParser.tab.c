@@ -528,9 +528,9 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    24,    24,    25,    29,    30,    31,    32,    36,    37,
-      38,    39,    43,    44,    45,    49,    50,    54,    55,    56,
-      57,    61,    66,    71,    72,    73,    74,    75
+       0,    23,    23,    24,    28,    29,    30,    31,    35,    36,
+      37,    38,    42,    43,    44,    48,    49,    53,    54,    55,
+      56,    60,    65,    70,    71,    72,    73,    74
 };
 #endif
 
@@ -1359,103 +1359,103 @@ yyreduce:
   switch (yyn)
     {
   case 8:
-#line 36 "splParser.y"
+#line 35 "splParser.y"
                           {yyval = yyvsp[-2] + yyvsp[0];}
 #line 1365 "splParser.tab.c"
     break;
 
   case 9:
-#line 37 "splParser.y"
+#line 36 "splParser.y"
                           {yyval = yyvsp[-2] - yyvsp[0];}
 #line 1371 "splParser.tab.c"
     break;
 
   case 10:
-#line 38 "splParser.y"
+#line 37 "splParser.y"
                           {yyval = yyvsp[-1] + yyvsp[0];}
 #line 1377 "splParser.tab.c"
     break;
 
   case 12:
-#line 43 "splParser.y"
+#line 42 "splParser.y"
                          {yyval = yyvsp[-2] * yyvsp[0];}
 #line 1383 "splParser.tab.c"
     break;
 
   case 13:
-#line 44 "splParser.y"
+#line 43 "splParser.y"
                          {if(yyvsp[0] != 0) yyval = yyvsp[-2] / yyvsp[0]; else;}
 #line 1389 "splParser.tab.c"
     break;
 
   case 15:
-#line 49 "splParser.y"
+#line 48 "splParser.y"
                       {if(yyvsp[0]==0) yyval=1; else{int x = yyvsp[-2]; for(int i = 0; i < yyvsp[0]-1; i++) x*=yyvsp[-2]; yyval = x;}}
 #line 1395 "splParser.tab.c"
     break;
 
   case 17:
-#line 54 "splParser.y"
+#line 53 "splParser.y"
                                 {yyval = yyvsp[0];}
 #line 1401 "splParser.tab.c"
     break;
 
   case 18:
-#line 55 "splParser.y"
+#line 54 "splParser.y"
                                 {yyval = yyvsp[0];}
 #line 1407 "splParser.tab.c"
     break;
 
   case 19:
-#line 56 "splParser.y"
+#line 55 "splParser.y"
                                 {yyval = yyvsp[0];}
 #line 1413 "splParser.tab.c"
     break;
 
   case 20:
-#line 57 "splParser.y"
+#line 56 "splParser.y"
                                 {yyval = yyvsp[-1];}
 #line 1419 "splParser.tab.c"
     break;
 
   case 21:
-#line 61 "splParser.y"
+#line 60 "splParser.y"
                         {yyval = yyvsp[0];}
 #line 1425 "splParser.tab.c"
     break;
 
   case 22:
-#line 66 "splParser.y"
+#line 65 "splParser.y"
                                        {printf("DISPLAY: %d\n", yyvsp[-1]);}
 #line 1431 "splParser.tab.c"
     break;
 
   case 23:
-#line 71 "splParser.y"
+#line 70 "splParser.y"
                                                                                         {if(yyvsp[-6] < yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
 #line 1437 "splParser.tab.c"
     break;
 
   case 24:
-#line 72 "splParser.y"
+#line 71 "splParser.y"
                                                                                         {if(yyvsp[-6] > yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
 #line 1443 "splParser.tab.c"
     break;
 
   case 25:
-#line 73 "splParser.y"
+#line 72 "splParser.y"
                                                                                         {if(yyvsp[-7] == yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
 #line 1449 "splParser.tab.c"
     break;
 
   case 26:
-#line 74 "splParser.y"
+#line 73 "splParser.y"
                                                                                         {if(yyvsp[-7] <= yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
 #line 1455 "splParser.tab.c"
     break;
 
   case 27:
-#line 75 "splParser.y"
+#line 74 "splParser.y"
                                                                                         {if(yyvsp[-7] >= yyvsp[-4]) yyval = yyvsp[-1]; else printf("FALSE\n");}
 #line 1461 "splParser.tab.c"
     break;
@@ -1693,7 +1693,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 77 "splParser.y"
+#line 76 "splParser.y"
 
 
 /* Code Section */
