@@ -1,7 +1,6 @@
 /*
 * Parser for SPL language
 * Written By: Denver DeBoer
-* Resource: http://www.admb-project.org/tools/flex/compiler.pdf
 */
 
 %{

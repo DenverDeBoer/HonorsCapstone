@@ -1,7 +1,6 @@
 /**
 * Lexer for SPL language
 * Written By: Denver DeBoer
-* Resource: https://www.oreilly.com/library/view/flex-bison/9780596805418/ch01.html
 */
 
 /**
