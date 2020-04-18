@@ -5,8 +5,13 @@
  * Primarily needed for conditional statements where not all
  * code will have to be executed
  */
+#ifndef CODE_GENERATOR
+#define CODE_GENERATOR
 
-int dataOffset = 0;	//Initial offset for data location
+#include "stackMachine.h"	//Used for codeOps
+
+//Initial offset for data location
+int dataOffset = 0;
 
 //Returns a reserved location for data
 int dataLocation() {
@@ -40,3 +45,5 @@ void backpatch(int address, enum codeOps operation, int arg)
 	code[address].op = operation;
 	code[address].arg = arg;
 }
+
+#endif
