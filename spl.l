@@ -32,6 +32,7 @@
 "]" {return CLOSEBRACKET;}
 ">" {return GREATERTHAN;}
 "<" {return LESSTHAN;}
+"==" {return EQUALITY;}
 "=" {return EQUAL;}
 "!" {return NOT;}
 ";" {return EOL;}
