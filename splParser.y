@@ -6,6 +6,10 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "symbolTable.h"
+#include "codeGenerator.h"
+#include "stackMachine.h"
 int yylex(void);
 void yyerror(char*);
 %}
@@ -23,6 +27,7 @@ void yyerror(char*);
 
 %%
 /* Rules Section */
+/*HERE*/
 program: /*EMPTY*/
        | program statement EOL
 ;
