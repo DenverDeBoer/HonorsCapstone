@@ -8,8 +8,6 @@
 #ifndef CODE_GENERATOR
 #define CODE_GENERATOR
 
-#include "stackMachine.h"	//Used for codeOps
-
 //Initial offset for data location
 int dataOffset = 0;
 
@@ -27,7 +25,7 @@ int codeLocation()
 }
 
 //Returns reserved code location
-int reservedLocation()
+int reserveLocation()
 {
 	return codeOffset++;
 }

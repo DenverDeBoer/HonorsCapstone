@@ -13,23 +13,29 @@
 
 //Node for Linked List
 //Stores pointer to name and the next node in the list
+//Stores offset from base address
 struct node {
 	char* name;
+	int offset;
 	struct node* next;
 };
 struct node* table = (struct node*)0;	//Declare start of empty table
-struct node* putSymbol();		//Method to add symbol
-struct node* getSymbol();		//Method to get symbol
+struct node* identifier;
 
 //putSymbol
 //Adds a symbol to the symbol table and returns a pointer
 //to that new symbol
 struct node* putSymbol(char* sName) {
 	struct node* temp = (struct node*) malloc(sizeof(struct node));
+
 	temp->name = (char*) malloc(strlen(sName)+1);
 	strcpy(temp->name, sName);
+	
+	temp->offset = dataLocation();
+	
 	temp->next = (struct node*)table;
 	table = temp;
+	
 	return temp;
 }
 

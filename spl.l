@@ -3,17 +3,13 @@
 * Written By: Denver DeBoer
 */
 
-/*
-Definition
-*/
+/* Definition */
 %{
 #include "splParser.tab.h"
+#include <string.h>
 %}
   
-/**
-Rule Section
-These rules govern the validity of tokens for the language
-**/
+/* Rule */
 %%
 \"[^"]*\" {return yytext[0];}
 "while"	{return WHILE;}
@@ -39,11 +35,8 @@ These rules govern the validity of tokens for the language
 "=" {return EQUAL;}
 "!" {return NOT;}
 ";" {return EOL;}
-[\t\n ] {;}
+[\t\n ] {}
 . {return yytext[0];}
 %%
  
-/**
-Code Section
-Provides additional C code functionalities
-**/
+/* Code Section */

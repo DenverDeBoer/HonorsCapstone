@@ -11,11 +11,13 @@
 
 //List of internal operations
 //Will be used to interpret and execute the segment of code read
-enum codeOps {STOP, GOTO, LT, GT, EQ, ADD, SUB, MUL, DIV, POW, STORE};
+enum codeOps {STOP, GOTO, LT, GT, EQ, ADD, SUB, MUL, DIV, POW, STORE,
+	      JMP_FALSE, DATA, LD_INT, LD_VAR, READ, WRITE};
 
 //List of external operations
 //A copy of the internal operations list
-char *opName[] = {"stop", "goto", "lt", "gt", "eq", "add", "sub", "mul", "div", "pow", "store"};
+char *opName[] = {"stop", "goto", "lt", "gt", "eq", "add", "sub", "mul", "div",
+		  "pow", "store", "jmp_false", "data", "ld_int", "ld_var", "read", "write"};
 
 //A structure defining an instruction
 //op:	operation insturction
@@ -96,6 +98,26 @@ void fetchAndExecute() {
 				break;
 			case STORE:
 				stack[ir.arg] = stack[top--];
+				break;
+			case READ:
+				printf("INPUT: ");
+				scanf("%d", &stack[ar+ir.arg]);
+				break;
+			case WRITE:
+				printf("OUTPUT: %d", stack[top--]);
+				break;
+			case JMP_FALSE:
+				if(stack[top--] == 0)
+					pc = ir.arg;
+				break;
+			case DATA:
+				top = top + ir.arg;
+				break;
+			case LD_INT:
+				stack[++top] = ir.arg;
+				break;
+			case LD_VAR:
+				stack[++top] = stack[ar + ir.arg];
 				break;
 			default:
 				printf("ERROR - stackMachine.h\n");

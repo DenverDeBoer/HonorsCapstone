@@ -6,22 +6,25 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <string.h>
 int yylex(void);
 void yyerror(char*);
 %}
 
 /* Declearation of Tokens */
+%start program
 %token STRING WORD NUMBER nNUMBER
-%token ADD SUB MUL DIV POW
-%token OPENPAR CLOSEPAR OPENBRACE CLOSEBRACE OPENBRACKET CLOSEBRACKET QUOTE
-%token WHILE GREATERTHAN LESSTHAN EQUAL NOT IF ELSE
+%token WHILE IF ELSE
+%token GREATERTHAN LESSTHAN EQUAL NOT
+%left ADD SUB
+%left MUL DIV
+%right POW
+%token OPENPAR CLOSEPAR OPENBRACE CLOSEBRACE OPENBRACKET CLOSEBRACKET
 %token EOL DISPLAY
+
 %%
 /* Rules Section */
 program: /*EMPTY*/
-       | program statement EOL	/*{printf("PROGRAM: %d\n", $2);}*/
+       | program statement EOL
 ;
 
 /* Branches off into various functions of the language */
@@ -32,46 +35,46 @@ statement: addsub
 ;
 
 /* Handles addition and subtraction */
-addsub: addsub ADD muldiv {$$ = $1 + $3;}
-      | addsub SUB muldiv {$$ = $1 - $3;}
-      | addsub nNUMBER	  {$$ = $1 + $2;}
+addsub: addsub ADD muldiv
+      | addsub SUB muldiv
+      | addsub nNUMBER
       | muldiv
 ;
 
 /* Handles multiplication and division */
-muldiv: muldiv MUL power {$$ = $1 * $3;}
-      | muldiv DIV power {if($3 != 0) $$ = $1 / $3; else;}
+muldiv: muldiv MUL power
+      | muldiv DIV power
       | power
 ;
 
 /* Handles exponents */
-power: term POW power {if($3==0) $$=1; else{int x = $1; for(int i = 0; i < $3-1; i++) x*=$1; $$ = x;}}
+power: term POW power
      | term
 ;
 
 /* Positive or negative numbers, and parentheses */
-term: NUMBER			{$$ = $1;}
-    | nNUMBER			{$$ = $1;}
-    | WORD			{$$ = $1;}
-    | OPENPAR addsub CLOSEPAR	{$$ = $2;}
+term: NUMBER
+    | nNUMBER
+    | WORD
+    | OPENPAR addsub CLOSEPAR
 ;
 
 /* Assigns value to variable */
-var: WORD EQUAL term	{$$ = $3;}
-/* WORD EQUALS STRING */
+var: WORD EQUAL term
+/*******************WORD EQUALS STRING*************************/
 ;
 
 /* Displays information to the screen */
-print: DISPLAY OPENPAR addsub CLOSEPAR {printf("DISPLAY: %d\n", $3);}
-/* DISPLAY STRING */
+print: DISPLAY OPENPAR addsub CLOSEPAR
+/**********************DISPLAY STRING**********************/
 ;
 
 /* If statement to test if a block of code should be run */
-ifstat: IF OPENPAR term LESSTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE 		{if($3 < $5) $$ = $8; else printf("FALSE\n");}
-      | IF OPENPAR term GREATERTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE  	{if($3 > $5) $$ = $8; else printf("FALSE\n");}
-      | IF OPENPAR term EQUAL EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE 	{if($3 == $6) $$ = $9; else printf("FALSE\n");}
-      | IF OPENPAR term LESSTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE 	{if($3 <= $6) $$ = $9; else printf("FALSE\n");}
-      | IF OPENPAR term GREATERTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE  {if($3 >= $6) $$ = $9; else printf("FALSE\n");}
+ifstat: IF OPENPAR term LESSTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE
+      | IF OPENPAR term GREATERTHAN term CLOSEPAR OPENBRACE statement CLOSEBRACE
+      | IF OPENPAR term EQUAL EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE
+      | IF OPENPAR term LESSTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE
+      | IF OPENPAR term GREATERTHAN EQUAL term CLOSEPAR OPENBRACE statement CLOSEBRACE
 ;
 %%
 
