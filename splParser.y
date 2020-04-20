@@ -30,8 +30,8 @@ void install(char* sName) {
 	struct node* s = getSymbol(sName);
 	if(s == 0)
 		s = putSymbol(sName);
-	else
-		printf("ERROR: splParser.y -> install -> %s already defined\n", sName);
+	//else
+	//	printf("ERROR: splParser.y -> install -> %s already defined\n", sName);
 }
 
 //If identifier is defined then generate code
@@ -53,46 +53,52 @@ void contextCheck(enum codeOps operation, char* sName) {
 
 /* Declearation of Tokens */
 %start program
-%token <id> STRING WORD
+%token <id> WORD
 %token <intValue> NUMBER nNUMBER
 %token <lbs> WHILE IF
 %token ELSE GREATERTHAN LESSTHAN EQUALITY EQUAL NOT
-%left ADD SUB
-%left MUL DIV
-%right POW
+%left ADDITION SUBTRACTION
+%left MULTIPLICATION DIVISION
+%right EXPONENT
 %token OPENPAR CLOSEPAR OPENBRACE CLOSEBRACE OPENBRACKET CLOSEBRACKET
-%token EOL DISPLAY
+%token START END EOL DISPLAY
 
 %%
 /* Rules Section */
-program: /*EMPTY*/
-       | program statement EOL
+program: START		{generateCode(DATA, dataLocation()-1);}
+         statements
+	 END		{generateCode(STOP, 0); YYACCEPT;}
 ;
 
+/* List of statements */
+statements: /* EMPTY */
+	  | statements statement EOL
+
 /* Branches off into various functions of the language */
-statement: addsub		/*COMPLETED*/
-	 | conditional		/*COMPLETED -> GTE, LTE, Singular*/
-	 | var			/*COMPLETED -> string*/
-	 | print		/*COMPLETED -> string/READ*/
+statement: addsub
+	 | conditional
+	 | var
+	 | print
 	 | ifstat
 	 | loop
+	 | EOL
 ;
 
 /* Handles addition and subtraction */
-addsub: addsub ADD muldiv	{generateCode(ADD, 0);}
-      | addsub SUB muldiv	{generateCode(SUB, 0);}
-      | addsub nNUMBER		{generateCode(ADD, 0);}
+addsub: addsub ADDITION muldiv		{generateCode(ADD, 0);}
+      | addsub nNUMBER			{generateCode(LD_INT, $2); generateCode(ADD, 0);}
+      | addsub SUBTRACTION muldiv	{generateCode(SUB, 0);}
       | muldiv
 ;
 
 /* Handles multiplication and division */
-muldiv: muldiv MUL power	{generateCode(MUL, 0);}
-      | muldiv DIV power	{generateCode(DIV, 0);}
+muldiv: muldiv MULTIPLICATION power	{generateCode(MUL, 0);}
+      | muldiv DIVISION power		{generateCode(DIV, 0);}
       | power
 ;
 
 /* Handles exponents */
-power: term POW power		{generateCode(POW, 0);}
+power: term EXPONENT power		{generateCode(POW, 0);}
      | term
 ;
 
@@ -100,36 +106,45 @@ power: term POW power		{generateCode(POW, 0);}
 conditional: term LESSTHAN term		{generateCode(LT, 0);}
 	   | term GREATERTHAN term	{generateCode(GT, 0);}
 	   | term EQUALITY term		{generateCode(EQ, 0);}
-/******************GTE LTE SINGULAR****************************/
+/******************GTE LTE****************************/
 ;
 
 /* Positive or negative numbers, and parentheses */
 term: NUMBER			{generateCode(LD_INT, $1);}
     | nNUMBER			{generateCode(LD_INT, $1);}
-    | WORD			{generateCode(LD_VAR, $1);}
+    | WORD			{contextCheck(LD_VAR, $1);}
     | OPENPAR addsub CLOSEPAR
 ;
 
 /* Assigns value to variable */
-var: WORD EQUAL addsub		{contextCheck(STORE, $1);}
+var: WORD EQUAL addsub		{install($1);
+   				 contextCheck(STORE, $1);}
 /*******************WORD EQUALS STRING*************************/
 ;
 
 /* Displays information to the screen */
-print: DISPLAY OPENPAR addsub CLOSEPAR		{generateCode(WRITE_INT, 0);}
+print: DISPLAY OPENPAR addsub CLOSEPAR		{generateCode(WRITE, 0);}
 /**********************DISPLAY STRING**********************/
+
 /**********************READ INPUT**************************/
 ;
 
 /* If statement to test if a block of code should be run */
-ifstat: IF OPENPAR conditional CLOSEPAR		{$1 = (struct labels*) newLabels();
-      						 $1->forJMP_FALSE = reserveLocation();}
-        OPENBRACE statement CLOSEBRACE		{$1->forGOTO = reserveLocation();}
-	ELSE OPENBRACE statement CLOSEBRACE	{backpatch($1->forJMP_FALSE, JMP_FALSE, codeLocation());}
+ifstat: IF OPENPAR conditional CLOSEPAR OPENBRACE	{$1 = (struct labels*) newLabels();
+      						 	 $1->forJMP_FALSE = reserveLocation();}
+        statements CLOSEBRACE				{$1->forGOTO = reserveLocation();}
+	ELSE OPENBRACE					{backpatch($1->forJMP_FALSE, JMP_FALSE, codeLocation());}
+	statements
+	CLOSEBRACE					{backpatch($1->forGOTO, GOTO, codeLocation());}
 ;
 
 /* While loop to execute a block of code numerous times */
-loop: WHILE OPENPAR conditional CLOSEPAR OPENBRACE statement CLOSEBRACE
+loop: WHILE OPENPAR			{$1 = (struct labels*) newLabels();
+    					 $1->forGOTO = codeLocation();}
+      conditional CLOSEPAR OPENBRACE	{$1->forJMP_FALSE = reserveLocation();}
+      statements
+      CLOSEBRACE			{generateCode(GOTO, $1->forGOTO);
+					 backpatch($1->forJMP_FALSE, JMP_FALSE, codeLocation());}
 %%
 
 /* Code Section */
@@ -140,6 +155,9 @@ int main(int argc, char** argv)
 		exit(1);
 	}
 	yyparse();
+	printf("PARSE COMPLETE\n");
+	printCode();
+	fetchAndExecute();
 }
 
 void yyerror(char* e)

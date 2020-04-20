@@ -49,36 +49,51 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    STRING = 258,
-    WORD = 259,
-    NUMBER = 260,
-    nNUMBER = 261,
-    WHILE = 262,
-    IF = 263,
-    ELSE = 264,
-    GREATERTHAN = 265,
-    LESSTHAN = 266,
+    WORD = 258,
+    NUMBER = 259,
+    nNUMBER = 260,
+    WHILE = 261,
+    IF = 262,
+    ELSE = 263,
+    GREATERTHAN = 264,
+    LESSTHAN = 265,
+    EQUALITY = 266,
     EQUAL = 267,
     NOT = 268,
-    ADD = 269,
-    SUB = 270,
-    MUL = 271,
-    DIV = 272,
-    POW = 273,
+    ADDITION = 269,
+    SUBTRACTION = 270,
+    MULTIPLICATION = 271,
+    DIVISION = 272,
+    EXPONENT = 273,
     OPENPAR = 274,
     CLOSEPAR = 275,
     OPENBRACE = 276,
     CLOSEBRACE = 277,
     OPENBRACKET = 278,
     CLOSEBRACKET = 279,
-    EOL = 280,
-    DISPLAY = 281
+    START = 280,
+    END = 281,
+    EOL = 282,
+    DISPLAY = 283
   };
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+#line 48 "splParser.y"
+union semanticRecord
+{
+#line 48 "splParser.y"
+
+	int intValue;
+	char* id;
+	struct labels* lbs;
+
+#line 93 "splParser.tab.h"
+
+};
+#line 48 "splParser.y"
+typedef union semanticRecord YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

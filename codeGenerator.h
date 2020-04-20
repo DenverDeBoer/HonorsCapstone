@@ -8,6 +8,8 @@
 #ifndef CODE_GENERATOR
 #define CODE_GENERATOR
 
+#include "stackMachine.h"
+
 //Initial offset for data location
 int dataOffset = 0;
 
@@ -34,7 +36,7 @@ int reserveLocation()
 void generateCode(enum codeOps operation, int arg)
 {
 	code[codeOffset].op = operation;
-	code[codeOffset].arg = arg;
+	code[codeOffset++].arg = arg;
 }
 
 //Generate code at reserved location
@@ -42,6 +44,16 @@ void backpatch(int address, enum codeOps operation, int arg)
 {
 	code[address].op = operation;
 	code[address].arg = arg;
+}
+
+//Print coce
+void printCode()
+{
+	int i = 0;
+	while(i < codeOffset) {
+		printf("%3ld: %-10s%4ld\n",i,opName[(int) code[i].op], code[i].arg );
+		i++;
+	}
 }
 
 #endif

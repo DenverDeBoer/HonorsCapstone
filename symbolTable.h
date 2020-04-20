@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "codeGenerator.h"
 
 //Node for Linked List
 //Stores pointer to name and the next node in the list
@@ -30,12 +31,12 @@ struct node* putSymbol(char* sName) {
 
 	temp->name = (char*) malloc(strlen(sName)+1);
 	strcpy(temp->name, sName);
-	
+
 	temp->offset = dataLocation();
-	
+
 	temp->next = (struct node*)table;
 	table = temp;
-	
+
 	return temp;
 }
 

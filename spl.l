@@ -1,4 +1,4 @@
-/**
+/*
 * Lexer for SPL language
 * Written By: Denver DeBoer
 */
@@ -12,18 +12,20 @@
 /* Rule */
 %%
 \"[^"]*\" {return yytext[0];}
+"start"	{return START;}
+"end"	{return END;}
 "while"	{return WHILE;}
 "if"	{return IF;}
 "else"	{return ELSE;}
 "display" {return DISPLAY;}
-[A-Za-z][A-Za-z0-9]* {return WORD;}
-[0-9]+ {yylval = atoi(yytext); return NUMBER;}
--[0-9]+ {yylval = atoi(yytext); return nNUMBER;}
-"+" {return ADD;}
-"-" {return SUB;}
-"*" {return MUL;}
-"/" {return DIV;}
-"^" {return POW;}
+[A-Za-z][A-Za-z0-9]* {yylval.id = (char*)strdup(yytext); return WORD;}
+[0-9]+ {yylval.intValue = atoi(yytext); return NUMBER;}
+-[0-9]+ {yylval.intValue = atoi(yytext); return nNUMBER;}
+"+" {return ADDITION;}
+"-" {return SUBTRACTION;}
+"*" {return MULTIPLICATION;}
+"/" {return DIVISION;}
+"^" {return EXPONENT;}
 "(" {return OPENPAR;}
 ")" {return CLOSEPAR;}
 "{" {return OPENBRACE;}
@@ -41,3 +43,4 @@
 %%
  
 /* Code Section */
+int yywrap(void){}
