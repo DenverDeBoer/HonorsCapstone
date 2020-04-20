@@ -21,7 +21,6 @@ struct node {
 	struct node* next;
 };
 struct node* table = (struct node*)0;	//Declare start of empty table
-struct node* identifier;		//Symbol table entry
 
 //putSymbol
 //Adds a symbol to the symbol table and returns a pointer
