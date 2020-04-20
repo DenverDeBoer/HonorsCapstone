@@ -30,8 +30,6 @@ void install(char* sName) {
 	struct node* s = getSymbol(sName);
 	if(s == 0)
 		s = putSymbol(sName);
-	//else
-	//	printf("ERROR: splParser.y -> install -> %s already defined\n", sName);
 }
 
 //If identifier is defined then generate code
