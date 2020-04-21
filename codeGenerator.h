@@ -47,13 +47,13 @@ void backpatch(int address, enum codeOps operation, int arg)
 }
 
 //Print coce
-void printCode()
-{
-	int i = 0;
-	while(i < codeOffset) {
-		printf("%3ld: %-10s%4ld\n",i,opName[(int) code[i].op], code[i].arg );
-		i++;
-	}
-}
+//void printCode()
+//{
+//	int i = 0;
+//	while(i < codeOffset) {
+//		printf("%3ld: %-10s%4ld\n",i,opName[(int) code[i].op], code[i].arg );
+//		i++;
+//	}
+//}
 
 #endif

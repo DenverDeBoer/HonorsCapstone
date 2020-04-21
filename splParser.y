@@ -153,8 +153,7 @@ int main(int argc, char** argv)
 		exit(1);
 	}
 	yyparse();
-	printf("PARSE COMPLETE\n");
-	printCode();
+//	printCode();
 	fetchAndExecute();
 }
 
