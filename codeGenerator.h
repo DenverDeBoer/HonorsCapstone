@@ -4,6 +4,7 @@
  * code at either current or a previous location.
  * Primarily needed for conditional statements where not all
  * code will have to be executed
+ * Created by: Denver DeBoer
  */
 #ifndef CODE_GENERATOR
 #define CODE_GENERATOR
@@ -46,7 +47,7 @@ void backpatch(int address, enum codeOps operation, int arg)
 	code[address].arg = arg;
 }
 
-//Print coce
+//Print operation instruction and corresponding argument value
 //void printCode()
 //{
 //	int i = 0;

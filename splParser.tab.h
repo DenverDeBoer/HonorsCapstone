@@ -80,10 +80,10 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-#line 46 "splParser.y"
+#line 47 "splParser.y"
 union semanticRecord
 {
-#line 46 "splParser.y"
+#line 47 "splParser.y"
 
 	int intValue;
 	char* id;
@@ -92,7 +92,7 @@ union semanticRecord
 #line 93 "splParser.tab.h"
 
 };
-#line 46 "splParser.y"
+#line 47 "splParser.y"
 typedef union semanticRecord YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

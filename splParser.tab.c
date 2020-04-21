@@ -66,7 +66,7 @@
 
 
 /* First part of user prologue.  */
-#line 6 "splParser.y"
+#line 7 "splParser.y"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -184,10 +184,10 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-#line 46 "splParser.y"
+#line 47 "splParser.y"
 union semanticRecord
 {
-#line 46 "splParser.y"
+#line 47 "splParser.y"
 
 	int intValue;
 	char* id;
@@ -196,7 +196,7 @@ union semanticRecord
 #line 197 "splParser.tab.c"
 
 };
-#line 46 "splParser.y"
+#line 47 "splParser.y"
 typedef union semanticRecord YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
@@ -572,10 +572,10 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    66,    66,    66,    72,    73,    76,    77,    78,    79,
-      80,    81,    82,    86,    87,    88,    89,    93,    94,    95,
-      99,   100,   104,   105,   106,   111,   112,   113,   114,   118,
-     124,   131,   133,   134,   131,   140,   142,   140
+       0,    67,    67,    67,    73,    74,    77,    78,    79,    80,
+      81,    82,    83,    87,    88,    89,    90,    94,    95,    96,
+     100,   101,   105,   106,   107,   111,   112,   113,   114,   118,
+     124,   128,   130,   131,   128,   137,   139,   137
 };
 #endif
 
@@ -1415,67 +1415,67 @@ yyreduce:
   switch (yyn)
     {
   case 2:
-#line 66 "splParser.y"
+#line 67 "splParser.y"
                         {generateCode(DATA, dataLocation()-1);}
 #line 1421 "splParser.tab.c"
     break;
 
   case 3:
-#line 68 "splParser.y"
+#line 69 "splParser.y"
                         {generateCode(STOP, 0); YYACCEPT;}
 #line 1427 "splParser.tab.c"
     break;
 
   case 13:
-#line 86 "splParser.y"
+#line 87 "splParser.y"
                                         {generateCode(ADD, 0);}
 #line 1433 "splParser.tab.c"
     break;
 
   case 14:
-#line 87 "splParser.y"
+#line 88 "splParser.y"
                                         {generateCode(LD_INT, (yyvsp[0].intValue)); generateCode(ADD, 0);}
 #line 1439 "splParser.tab.c"
     break;
 
   case 15:
-#line 88 "splParser.y"
+#line 89 "splParser.y"
                                         {generateCode(SUB, 0);}
 #line 1445 "splParser.tab.c"
     break;
 
   case 17:
-#line 93 "splParser.y"
+#line 94 "splParser.y"
                                         {generateCode(MUL, 0);}
 #line 1451 "splParser.tab.c"
     break;
 
   case 18:
-#line 94 "splParser.y"
+#line 95 "splParser.y"
                                         {generateCode(DIV, 0);}
 #line 1457 "splParser.tab.c"
     break;
 
   case 20:
-#line 99 "splParser.y"
+#line 100 "splParser.y"
                                         {generateCode(POW, 0);}
 #line 1463 "splParser.tab.c"
     break;
 
   case 22:
-#line 104 "splParser.y"
+#line 105 "splParser.y"
                                         {generateCode(LT, 0);}
 #line 1469 "splParser.tab.c"
     break;
 
   case 23:
-#line 105 "splParser.y"
+#line 106 "splParser.y"
                                         {generateCode(GT, 0);}
 #line 1475 "splParser.tab.c"
     break;
 
   case 24:
-#line 106 "splParser.y"
+#line 107 "splParser.y"
                                         {generateCode(EQ, 0);}
 #line 1481 "splParser.tab.c"
     break;
@@ -1512,45 +1512,45 @@ yyreduce:
     break;
 
   case 31:
-#line 131 "splParser.y"
+#line 128 "splParser.y"
                                                         {(yyvsp[-4].lbs) = (struct labels*) newLabels();
       						 	 (yyvsp[-4].lbs)->forJMP_FALSE = reserveLocation();}
 #line 1519 "splParser.tab.c"
     break;
 
   case 32:
-#line 133 "splParser.y"
+#line 130 "splParser.y"
                                                         {(yyvsp[-7].lbs)->forGOTO = reserveLocation();}
 #line 1525 "splParser.tab.c"
     break;
 
   case 33:
-#line 134 "splParser.y"
+#line 131 "splParser.y"
                                                         {backpatch((yyvsp[-10].lbs)->forJMP_FALSE, JMP_FALSE, codeLocation());}
 #line 1531 "splParser.tab.c"
     break;
 
   case 34:
-#line 136 "splParser.y"
+#line 133 "splParser.y"
                                                         {backpatch((yyvsp[-13].lbs)->forGOTO, GOTO, codeLocation());}
 #line 1537 "splParser.tab.c"
     break;
 
   case 35:
-#line 140 "splParser.y"
+#line 137 "splParser.y"
                                         {(yyvsp[-1].lbs) = (struct labels*) newLabels();
     					 (yyvsp[-1].lbs)->forGOTO = codeLocation();}
 #line 1544 "splParser.tab.c"
     break;
 
   case 36:
-#line 142 "splParser.y"
+#line 139 "splParser.y"
                                         {(yyvsp[-5].lbs)->forJMP_FALSE = reserveLocation();}
 #line 1550 "splParser.tab.c"
     break;
 
   case 37:
-#line 144 "splParser.y"
+#line 141 "splParser.y"
                                         {generateCode(GOTO, (yyvsp[-8].lbs)->forGOTO);
 					 backpatch((yyvsp[-8].lbs)->forJMP_FALSE, JMP_FALSE, codeLocation());}
 #line 1557 "splParser.tab.c"
@@ -1789,7 +1789,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 146 "splParser.y"
+#line 143 "splParser.y"
 
 
 /* Code Section */

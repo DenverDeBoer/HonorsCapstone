@@ -1,6 +1,7 @@
 /*
 * Parser for SPL language
-* Written By: Denver DeBoer
+* Outlines valid statements within SPL
+* Created by: Denver DeBoer
 */
 
 %{
@@ -104,7 +105,6 @@ power: term EXPONENT power		{generateCode(POW, 0);}
 conditional: term LESSTHAN term		{generateCode(LT, 0);}
 	   | term GREATERTHAN term	{generateCode(GT, 0);}
 	   | term EQUALITY term		{generateCode(EQ, 0);}
-/******************GTE LTE****************************/
 ;
 
 /* Positive or negative numbers, and parentheses */
@@ -122,9 +122,6 @@ var: WORD EQUAL addsub		{install($1);
 
 /* Displays information to the screen */
 print: DISPLAY OPENPAR addsub CLOSEPAR		{generateCode(WRITE, 0);}
-/**********************DISPLAY STRING**********************/
-
-/**********************READ INPUT**************************/
 ;
 
 /* If statement to test if a block of code should be run */
