@@ -3,6 +3,7 @@
  * Until a stopping instruction is read, it will continually read segments
  * of code and execute the cooresponding instruction while maintaining a
  * runtime stack
+ * Created by: Denver DeBoer
  */
 #ifndef STACK_MACHINE
 #define STACK_MACHINE
@@ -12,12 +13,12 @@
 
 //List of internal operations
 //Will be used to interpret and execute the segment of code read
-enum codeOps {STOP, GOTO, LT, GT, EQ, ADD, NEG, SUB, MUL, DIV, POW, STORE,
+enum codeOps {STOP, GOTO, LT, GT, EQ, ADD, SUB, MUL, DIV, POW, STORE,
 	      JMP_FALSE, DATA, LD_INT, LD_VAR, READ, WRITE};
 
 //List of external operations
 //A copy of the internal operations list
-char *opName[] = {"stop", "goto", "lt", "gt", "eq", "add", "neg", "sub", "mul", "div",
+char *opName[] = {"stop", "goto", "lt", "gt", "eq", "add", "sub", "mul", "div",
 		  "pow", "store", "jmp_false", "data", "ld_int", "ld_var", "read", "write"};
 
 //A structure defining an instruction
@@ -80,9 +81,6 @@ void fetchAndExecute() {
 			case ADD:
 				stack[top-1] = stack[top-1] + stack[top];
 				top--;
-				break;
-			case NEG:
-
 				break;
 			case SUB:
 				stack[top-1] = stack[top-1] - stack[top];

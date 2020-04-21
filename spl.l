@@ -1,6 +1,7 @@
 /*
 * Lexer for SPL language
-* Written By: Denver DeBoer
+* Used for defining tokens for the SPL language
+* Created by: Denver DeBoer
 */
 
 /* Definition */

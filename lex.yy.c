@@ -479,15 +479,16 @@ char *yytext;
 #line 1 "spl.l"
 /*
 * Lexer for SPL language
-* Written By: Denver DeBoer
+* Used for defining tokens for the SPL language
+* Created by: Denver DeBoer
 */
 /* Definition */
-#line 8 "spl.l"
+#line 9 "spl.l"
 #include "splParser.tab.h"
 #include <string.h>
-#line 489 "lex.yy.c"
+#line 490 "lex.yy.c"
 /* Rule */
-#line 491 "lex.yy.c"
+#line 492 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -704,9 +705,9 @@ YY_DECL
 		}
 
 	{
-#line 13 "spl.l"
+#line 14 "spl.l"
 
-#line 710 "lex.yy.c"
+#line 711 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -766,156 +767,156 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 14 "spl.l"
+#line 15 "spl.l"
 {return yytext[0];}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "spl.l"
+#line 16 "spl.l"
 {return START;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "spl.l"
+#line 17 "spl.l"
 {return END;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 17 "spl.l"
+#line 18 "spl.l"
 {return WHILE;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 18 "spl.l"
+#line 19 "spl.l"
 {return IF;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 19 "spl.l"
+#line 20 "spl.l"
 {return ELSE;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 20 "spl.l"
+#line 21 "spl.l"
 {return DISPLAY;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 21 "spl.l"
+#line 22 "spl.l"
 {yylval.id = (char*)strdup(yytext); return WORD;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 22 "spl.l"
+#line 23 "spl.l"
 {yylval.intValue = atoi(yytext); return NUMBER;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 23 "spl.l"
+#line 24 "spl.l"
 {yylval.intValue = atoi(yytext); return nNUMBER;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 "spl.l"
+#line 25 "spl.l"
 {return ADDITION;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 25 "spl.l"
+#line 26 "spl.l"
 {return SUBTRACTION;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 26 "spl.l"
+#line 27 "spl.l"
 {return MULTIPLICATION;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 27 "spl.l"
+#line 28 "spl.l"
 {return DIVISION;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 28 "spl.l"
+#line 29 "spl.l"
 {return EXPONENT;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 29 "spl.l"
+#line 30 "spl.l"
 {return OPENPAR;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 30 "spl.l"
+#line 31 "spl.l"
 {return CLOSEPAR;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 31 "spl.l"
+#line 32 "spl.l"
 {return OPENBRACE;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 32 "spl.l"
+#line 33 "spl.l"
 {return CLOSEBRACE;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 33 "spl.l"
+#line 34 "spl.l"
 {return OPENBRACKET;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 34 "spl.l"
+#line 35 "spl.l"
 {return CLOSEBRACKET;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 35 "spl.l"
+#line 36 "spl.l"
 {return GREATERTHAN;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 36 "spl.l"
+#line 37 "spl.l"
 {return LESSTHAN;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 37 "spl.l"
+#line 38 "spl.l"
 {return EQUALITY;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 38 "spl.l"
+#line 39 "spl.l"
 {return EQUAL;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 39 "spl.l"
+#line 40 "spl.l"
 {return NOT;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 40 "spl.l"
+#line 41 "spl.l"
 {return EOL;}
 	YY_BREAK
 case 28:
 /* rule 28 can match eol */
 YY_RULE_SETUP
-#line 41 "spl.l"
+#line 42 "spl.l"
 {}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 42 "spl.l"
+#line 43 "spl.l"
 {return yytext[0];}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 43 "spl.l"
+#line 44 "spl.l"
 ECHO;
 	YY_BREAK
-#line 919 "lex.yy.c"
+#line 920 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1920,7 +1921,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 43 "spl.l"
+#line 44 "spl.l"
 
  
 /* Code Section */

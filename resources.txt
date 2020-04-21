@@ -1,9 +1,16 @@
+/*
+* Resources used in creating SPL
+* Created by: Denver DeBoer
+*/
+
 //CFG layout
 http://www.personal.kent.edu/~rmuhamma/Compilers/MyCompiler/chapter2.htm
 
 //Creating lexer and parser
 https://www.oreilly.com/library/view/flex-bison/9780596805418/ch01.html
 
-//Creating state machine
+//Creating stack machine
 http://www.admb-project.org/tools/flex/compiler.pdf
+
+//Declaring tokens
 http://marvin.cs.uidaho.edu/Teaching/CS445/bison.html

@@ -1,6 +1,7 @@
 /*
 * Parser for SPL language
-* Written By: Denver DeBoer
+* Outlines valid statements within SPL
+* Created by: Denver DeBoer
 */
 
 %{
@@ -30,8 +31,6 @@ void install(char* sName) {
 	struct node* s = getSymbol(sName);
 	if(s == 0)
 		s = putSymbol(sName);
-	//else
-	//	printf("ERROR: splParser.y -> install -> %s already defined\n", sName);
 }
 
 //If identifier is defined then generate code
@@ -106,7 +105,6 @@ power: term EXPONENT power		{generateCode(POW, 0);}
 conditional: term LESSTHAN term		{generateCode(LT, 0);}
 	   | term GREATERTHAN term	{generateCode(GT, 0);}
 	   | term EQUALITY term		{generateCode(EQ, 0);}
-/******************GTE LTE****************************/
 ;
 
 /* Positive or negative numbers, and parentheses */
@@ -124,9 +122,6 @@ var: WORD EQUAL addsub		{install($1);
 
 /* Displays information to the screen */
 print: DISPLAY OPENPAR addsub CLOSEPAR		{generateCode(WRITE, 0);}
-/**********************DISPLAY STRING**********************/
-
-/**********************READ INPUT**************************/
 ;
 
 /* If statement to test if a block of code should be run */
@@ -155,8 +150,7 @@ int main(int argc, char** argv)
 		exit(1);
 	}
 	yyparse();
-	printf("PARSE COMPLETE\n");
-	printCode();
+//	printCode();
 	fetchAndExecute();
 }
 
