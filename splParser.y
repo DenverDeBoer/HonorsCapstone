@@ -117,7 +117,6 @@ term: NUMBER			{generateCode(LD_INT, $1);}
 /* Assigns value to variable */
 var: WORD EQUAL addsub		{install($1);
    				 contextCheck(STORE, $1);}
-/*******************WORD EQUALS STRING*************************/
 ;
 
 /* Displays information to the screen */
